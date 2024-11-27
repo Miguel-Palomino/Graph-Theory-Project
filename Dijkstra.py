@@ -2,34 +2,6 @@ from WeightedGraph import *
 import heapq
 import math
 
-def build_tree(T):
-    """Builds a dictionary representing the tree from the list of parents."""
-    n = len(T)
-    tree = {i: [] for i in range(n)}  # Create an empty list for each node
-    root = None
-
-    # Construct the tree
-    for child, parent in enumerate(T):
-        if parent == -1:
-            root = child  # Node with no parent is the root
-        else:
-            tree[parent].append(child)
-
-    return tree, root
-
-def print_tree(T):
-    tree, root = build_tree(T)
-    def print_tree(node, level=0):
-        indent = "  " * level
-        print(f"{indent}- Node {node}")
-        for child in tree[node]:
-            print_tree(child, level + 1)
-
-    if root is not None:
-        print_tree(root)
-    else:
-        print("No root found")
-
 def Dijkstra(g, start): #dijkstra's algorithm will find the minimum-weight path from the start vertex to any other vertex
     #root = 0  # assign vertex 0 as the root/source
     Visited = [False] * g.num_nodes # visited set; no vertices have been visited yet
@@ -66,11 +38,11 @@ def printSolution(start, distance, path):
     for vertex_index in range(vertices):
         if vertex_index != start:
             print("\n", start, "->", vertex_index, "\t\t", distance[vertex_index], "\t\t", end="")
-            printPath(vertex_index, path)
-def printPath(current, path):
+            printPaths(vertex_index, path)
+def printPaths(current, path):
     if current == -1:
         return
-    printPath(path[current], path)
+    printPaths(path[current], path)
     print(current, end=" ")
 
 # test
@@ -85,5 +57,5 @@ test_graph.add_edge(3,4, 5)
 
 # test_graph.print_graph()
 start = 0
-end = 2
+#end = 2
 Dijkstra(test_graph, start)
