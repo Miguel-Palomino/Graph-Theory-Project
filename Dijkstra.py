@@ -33,12 +33,12 @@ def Dijkstra(g, start): #dijkstra's algorithm will find the minimum-weight path 
 #Source for these print functions is https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
 def printSolution(start, distance, path):
     vertices = len(distance)
-    print("Vertex\t  Distance\t  Path")
+    print(" Vertex\t   Distance\t   Path")
 
-    for vertex_index in range(vertices):
-        if vertex_index != start:
-            print("\n", start, "->", vertex_index, "\t\t", distance[vertex_index], "\t\t", end="")
-            printPaths(vertex_index, path)
+    for vertexIndex in range(vertices):
+        if vertexIndex != start:
+            print("\n", start, "->", vertexIndex, "\t", distance[vertexIndex], "\t\t", end="")
+            printPaths(vertexIndex, path)
 def printPaths(current, path):
     if current == -1:
         return
@@ -46,16 +46,14 @@ def printPaths(current, path):
     print(current, end=" ")
 
 # test
-test_graph = WeightedGraph(5)
-test_graph.add_edge(0,3, 2)
-test_graph.add_edge(0,2, 4)
-test_graph.add_edge(1,3, 6)
-test_graph.add_edge(1,2, 1)
-test_graph.add_edge(2,3, 3)
-test_graph.add_edge(2,4, 10)
-test_graph.add_edge(3,4, 5)
+test_graph = WeightedGraph(6)
+test_graph.add_edge(0,1, 6, "light")
+test_graph.add_edge(0,5, 7, "moderate")
+test_graph.add_edge(4,5, 4, "light")
+test_graph.add_edge(4,2, 4, "high")
+test_graph.add_edge(2,3,7, "heavy")
 
 # test_graph.print_graph()
 start = 0
-#end = 2
+
 Dijkstra(test_graph, start)

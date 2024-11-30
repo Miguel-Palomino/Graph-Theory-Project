@@ -6,10 +6,19 @@ class WeightedGraph:
         # Initialize a 2D matrix with zeros
         self.adj_matrix = [[0] * num_nodes for _ in range(num_nodes)]
 
-    def add_edge(self, node1, node2, w, directed = False):
+    def add_edge(self, node1, node2, w, traffic = None):
+        w += .0 * w #just preference to make all weights float when displaying
+        if traffic != None:
+            if traffic == "light":
+                w += .1 * w
+            elif traffic == "moderate":
+                w += .2 * w
+            else: # if heavy traffic
+                w += .3 * w
+
+
         self.adj_matrix[node1][node2] = w
-        if not directed:
-            self.adj_matrix[node2][node1] = w
+        self.adj_matrix[node2][node1] = w
 
     def remove_edge(self, node1, node2):
         # Remove the edge between node1 and node2
