@@ -37,7 +37,7 @@ def printSolution(start, distance, path):
 
     for vertexIndex in range(vertices):
         if vertexIndex != start:
-            print("\n", start, "->", vertexIndex, "\t", distance[vertexIndex], "\t\t", end="")
+            print("\n", start, "->", vertexIndex, "\t", round(distance[vertexIndex], 2), "\t\t", end="")
             printPaths(vertexIndex, path)
 def printPaths(current, path):
     if current == -1:
@@ -47,11 +47,11 @@ def printPaths(current, path):
 
 # test
 test_graph = WeightedGraph(6)
-test_graph.add_edge(0,1, 6, "light")
-test_graph.add_edge(0,5, 7, "moderate")
-test_graph.add_edge(4,5, 4, "light")
-test_graph.add_edge(4,2, 4, "high")
-test_graph.add_edge(2,3,7, "heavy")
+test_graph.add_edge(0,1, 6, 10, "light")
+test_graph.add_edge(0,5, 7, 5,"moderate")
+test_graph.add_edge(4,5, 4, 25,"light")
+test_graph.add_edge(4,2, 4, 30,"high")
+test_graph.add_edge(2,3,7, 15,"heavy")
 
 # test_graph.print_graph()
 start = 0

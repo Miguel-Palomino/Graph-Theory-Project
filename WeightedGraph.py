@@ -6,19 +6,36 @@ class WeightedGraph:
         # Initialize a 2D matrix with zeros
         self.adj_matrix = [[0] * num_nodes for _ in range(num_nodes)]
 
-    def add_edge(self, node1, node2, w, traffic = None):
-        w += .0 * w #just preference to make all weights float when displaying
+    def add_edge(self, node1, node2, weight, speedLimit, traffic = None):
+        #initial weight is user-decided based on distance, the speedLimit will reduce the weight, and the traffic will increase it
+        weight += .0 * weight #just preference to make all weights float when displaying
+        if speedLimit <= 0:
+            print("Error: speed limit must be a positive integer \n")
+        elif speedLimit >= 0 and speedLimit <= 10:
+            weight = weight - (.05 * weight)
+        elif speedLimit > 10  and speedLimit <= 20:
+            weight = weight - (.10 * weight)
+        elif speedLimit >= 0 and speedLimit <= 30:
+            weight = weight - (.15 * weight)
+        elif speedLimit >= 0 and speedLimit <= 40:
+            weight = weight - (.20 * weight)
+        elif speedLimit >= 0 and speedLimit <= 50:
+            weight = weight - (.25 * weight)
+        elif speedLimit >= 0 and speedLimit <= 60:
+            weight = weight - (.35 * weight)
+        elif speedLimit >= 0 and speedLimit <= 70:
+            weight = weight - (.40 * weight)
+        else:
+            weight = weight - (.50 * weight)
         if traffic != None:
             if traffic == "light":
-                w += .1 * w
+                weight += .1 * weight
             elif traffic == "moderate":
-                w += .2 * w
+                weight += .2 * weight
             else: # if heavy traffic
-                w += .3 * w
-
-
-        self.adj_matrix[node1][node2] = w
-        self.adj_matrix[node2][node1] = w
+                weight += .3 * weight
+        self.adj_matrix[node1][node2] = weight
+        self.adj_matrix[node2][node1] = weight
 
     def remove_edge(self, node1, node2):
         # Remove the edge between node1 and node2
