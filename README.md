@@ -37,4 +37,6 @@ The main.py file is where we test cases (an example is provided in main.py)
     * User assigns desired initial weight based on the distance
     * If speedLimit and traffic are not given, it will assign the given weight directly to that edge
     * If speedLimit and/or traffic are given, the code will adjust the given weight accordingly
-* After creating the graph with the desired edges and weights, call Dijkstra(graph, start_vertex), i.e. Dijkstra(variable, 0), to run the algorithm and get path(s)
+* After creating the graph with the desired edges and weights, the last thing to do is to call the algorithm by using Dijkstra(graph, start_vertex), i.e. Dijkstra(variable, 0), to run the algorithm and get path(s)
+
+This is not the full representation how a GPS finds routs, but rather how Dijkstra's algorith is used, thank you!
