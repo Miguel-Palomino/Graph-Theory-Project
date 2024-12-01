@@ -25,7 +25,7 @@ class WeightedGraph:
             weight = weight - (.35 * weight)
         elif speedLimit >= 0 and speedLimit <= 70:
             weight = weight - (.40 * weight)
-        else:
+        else: #if speed limit is greater than 80
             weight = weight - (.50 * weight)
         if traffic != None:
             if traffic == "light":
@@ -56,12 +56,12 @@ class WeightedGraph:
             print(" ".join(f"{w:.2f}" for w in row))
             #print(" ".join(map(str, row)))
 
-if __name__ == "__main__":
-    # use case
-    test_graph = WeightedGraph(3)
-    test_graph.add_edge(1,0, 2)
-    test_graph.add_edge(1, 2, 3)
-    test_graph.print_graph()
-    print(test_graph.num_edges())
-    print("\n")
-    test_graph.print_graph()
+# if __name__ == "__main__":
+#     # use case
+#     test_graph = WeightedGraph(3)
+#     test_graph.add_edge(1,0, 2)
+#     test_graph.add_edge(1, 2, 3)
+#     test_graph.print_graph()
+#     print(test_graph.num_edges())
+#     print("\n")
+#     test_graph.print_graph()

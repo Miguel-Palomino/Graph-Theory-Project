@@ -1,4 +1,3 @@
-from WeightedGraph import *
 import heapq
 import math
 
@@ -44,16 +43,3 @@ def printPaths(current, path):
         return
     printPaths(path[current], path)
     print(current, end=" ")
-
-# test
-test_graph = WeightedGraph(6)
-test_graph.add_edge(0,1, 6, 10, "light")
-test_graph.add_edge(0,5, 7, 5,"moderate")
-test_graph.add_edge(4,5, 4, 25,"light")
-test_graph.add_edge(4,2, 4, 30,"high")
-test_graph.add_edge(2,3,7, 15,"heavy")
-
-# test_graph.print_graph()
-start = 0
-
-Dijkstra(test_graph, start)
