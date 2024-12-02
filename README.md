@@ -39,9 +39,10 @@ The main.py file is where we test cases (an example is provided in main.py)
     * User assigns desired initial weight based on the distance
     * If speedLimit and traffic are not given, it will assign the given weight directly to that edge
     * If speedLimit and/or traffic are given, the code will adjust the given weight accordingly
-* After creating the graph with the desired edges and weights, we can call Dijkstra's algorithm (i.e distance, path = Dijkstra(variable, start_vertex)
-  * distance will hold the distance list returned by the algorithm
-  * path will hold the path list returned by the algorithm
+* After creating the graph with the desired edges and weights, we can call Dijkstra's algorithm (Dijkstar(graph, start_vertex))
+  * i.e: distance, path = Dijkstra(variable, start_vertex)
+    * distance will hold the distance list returned by the algorithm
+    * path will hold the path list returned by the algorithm
 *  Finally, we can either call printSolution(start_vertex, distance, path) or getXYPath(start_vertex, end_vertex, path)
    * printSolution(start_vertex, distance, path) will print **ALL** minimum-weight paths found in the graph
      * start_vertex is the node we wish to start at
