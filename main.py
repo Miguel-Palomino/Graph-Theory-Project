@@ -55,6 +55,6 @@ if __name__ == "__main__":
     testGraph.add_edge(5, 3, 14)
     testGraph.add_edge(5, 4, 10)
     testGraph.add_edge(3, 4, 9)
-    print("\n")
+    print("\n\nIn-class example paths:")
     classDistance, classPath = Dijkstra(testGraph, start)
     printSolution(start, classDistance, classPath)
