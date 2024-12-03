@@ -33,7 +33,6 @@ if __name__ == "__main__":
     testGraph.add_edge(11, 12, .07, 35)
     testGraph.add_edge(12, 13, .1, 10)  # connect walmart to nearest intersection of route 2
 
-
     start_vertex = 0 # home vertex
     end_vertex = 13 # walmart vertex
     print("\nShortest paths: ")
