@@ -2,59 +2,39 @@ from WeightedGraph import *
 from Dijkstra import *
 
 # main to test cases
-    #this example compares the paths found between two similar graphs, one takes into account all factors (speed limit and traffic) and one doesn't
-    #this example also uses an in-class example to ensure we get the same paths from the "root" to any other vertex
+    #this example uses a graph based off real routes from a house to a grocery store
+    #the weights are based on distance in miles. It is a small graph where the vertices are close to each other so the weights are small
+    #you can create your own graph and assign desired weights that correspond to the distance, you can also include a speed limit and traffic rate to see if the paths change
 if __name__ == "__main__":
-    # test graph with only distance weight
-    test_graph = WeightedGraph(6)
-    test_graph.add_edge(0,1, 4)
-    test_graph.add_edge(0,5, 10)
-    test_graph.add_edge(0,3, 3)
-    test_graph.add_edge(1,2, 4)
-    test_graph.add_edge(3,4, 2)
-    test_graph.add_edge(4,5, 3)
-    test_graph.add_edge(4,2, 2)
+    #test with graph of real-world data of routes from home to walmart
+    testGraph = WeightedGraph(14) # vertex 0 is home and vertex 13 is walmart
+    # add route 1 (should be faster route according to GPS)
+    testGraph.add_edge(0, 1, .1, 25) #go to nearest intersection to home
+    testGraph.add_edge(1, 2, .03, 25)
+    testGraph.add_edge(2, 3, .09, 35)
+    testGraph.add_edge(3, 4, .1, 35, "light")
+    testGraph.add_edge(4, 5, .1, 35, "light")
+    testGraph.add_edge(5, 6, .1, 35, "light")
+    testGraph.add_edge(6, 13, .08, 5) #connect walmart to nearest intersection of route 1
 
-    #test graph using speedLimit and traffic factors that affect the weight
-    test_graph2 = WeightedGraph(6)
-    test_graph2.add_edge(0,1, 4, 10, "Light")
-    test_graph2.add_edge(0,5, 10, 40) # no traffic
-    test_graph2.add_edge(0,3, 3, 25,"moderate")
-    test_graph2.add_edge(1,2, 4, 15,"moderate")
-    test_graph2.add_edge(3,4, 2, 30 ,"heavy")
-    test_graph2.add_edge(4,5, 3, 25,"light")
-    test_graph2.add_edge(4,2, 2, 30,"heavy")
+    #add edges between routes
+    testGraph.add_edge(2, 9, .2, 35)
+    testGraph.add_edge(4, 10, .3, 30)
+    testGraph.add_edge(5, 11, .3, 35,"moderate")
 
-    start = 0
-    end = 5
-    # test_graph.print_graph() # print_graph shows adjacency matrix
-    print("No factors included (only distance weight):")
-    distance, path = Dijkstra(test_graph, start)
-    printSolution(start, distance, path)
-    getXYPath(start, end, path)
-    print("\n")#add new line
-    print("Factors included (speed limit and traffic):")
-    # test_graph2.print_graph() # print adjacency matrix for test_graph2
-    distance2, path2 = Dijkstra(test_graph2, start)
-    printSolution(start, distance2, path2)
-    getXYPath(start, end, path2)
+    #add route 2 (neighborhood route)
+    testGraph.add_edge(0, 7, .1, 25) #go opposite from route 1 and to the nearest intersection to home
+    testGraph.add_edge(7, 8, .05, 25)
+    testGraph.add_edge(8, 9, .1, 25)
+    testGraph.add_edge(9, 10, .1, 35)
+    testGraph.add_edge(10, 11, .2, 35)
+    testGraph.add_edge(11, 12, .07, 35)
+    testGraph.add_edge(12, 13, .1, 10)  #connect walmart to nearest intersection of route 2
+    print("\n\nShortest path from home to walmart:")
+    start_vertex = 0 #home vertex
+    end_vertex = 13 #walmart vertex
+    classDistance, classPath = Dijkstra(testGraph, start_vertex) #call algorithm and start at home vertex
+    printSolution(start_vertex, classDistance, classPath)
+    getXYPath(start_vertex, end_vertex, classPath) #find the shortest path from home to walmart
 
-    #test with example given in class
-    testGraph = WeightedGraph(9)
-    testGraph.add_edge(0, 1, 4)
-    testGraph.add_edge(0, 7, 8)
-    testGraph.add_edge(1, 7, 11)
-    testGraph.add_edge(1, 2, 8)
-    testGraph.add_edge(2, 3, 7)
-    testGraph.add_edge(2, 8, 2)
-    testGraph.add_edge(2, 5, 4)
-    testGraph.add_edge(7, 8, 7)
-    testGraph.add_edge(7, 6, 1)
-    testGraph.add_edge(6, 8, 6)
-    testGraph.add_edge(6, 5, 2)
-    testGraph.add_edge(5, 3, 14)
-    testGraph.add_edge(5, 4, 10)
-    testGraph.add_edge(3, 4, 9)
-    print("\n\nIn-class example paths:")
-    classDistance, classPath = Dijkstra(testGraph, start)
-    printSolution(start, classDistance, classPath)
+    #fastest route was route 1!
