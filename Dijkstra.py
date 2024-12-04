@@ -8,7 +8,7 @@ def Dijkstra(g, start): #dijkstra's algorithm will find the minimum-weight path 
     path = [-1] * g.num_nodes # tree
     distance[start] = 0  # distance to root is 0
     pq = [] #initilize empty priority queue
-    heapq.heappush(pq, (0, start)) # insert the first item to priority queue
+    heapq.heappush(pq, (0, start)) # insert the first item to priority queue; heapq is automatically sorted, the smallest weight is at index-0
     # See here https://docs.python.org/3/library/heapq.html for more information about heapq.
     while pq:
         cost, u = heapq.heappop(pq) #heappop pops and returns smallest item from the heap; smallest element is always at the root
